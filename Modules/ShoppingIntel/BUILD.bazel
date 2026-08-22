@@ -1,0 +1,61 @@
+load("@rules_apple//apple:ios.bzl", "ios_application")
+load("@rules_swift//swift:swift.bzl", "swift_library")
+load("//Modules/ShoppingIntel:managed_deps.bzl", "MANAGED_DEPS")
+load("//tools/snoozel:constants.bzl", "CODE_SIGNED_EXEC_PROPERTIES", "default_ios_version")
+load("//tools/snoozel/provisioning:provisioning.bzl", "reddit_provisioning_profile")
+load("//tools/snoozel/rules:reddit_ios_behavior_module.bzl", "reddit_ios_behavior_module")
+load(
+    "//tools/snoozel/rules:reddit_ios_module_attrs.bzl",
+    "reddit_ios_module_library_attrs",
+    "reddit_ios_module_snapshot_test_attrs",
+    "reddit_ios_module_unit_test_attrs",
+)
+
+reddit_ios_behavior_module(
+    name = "ShoppingIntel",
+    managed_deps = MANAGED_DEPS,
+    sources_attrs = {
+        "Public": reddit_ios_module_library_attrs(),
+        "Public/DI": reddit_ios_module_library_attrs(),
+        "Public/MocksDI": reddit_ios_module_library_attrs(),
+        "Internal": reddit_ios_module_library_attrs(),
+        "Internal/ImplDI": reddit_ios_module_library_attrs(),
+        "Internal/TestDoubles": reddit_ios_module_library_attrs(),
+    },
+    tests_attrs = {
+        "AccessibilitySnapshotTests": reddit_ios_module_snapshot_test_attrs(
+            requires_app_host = True,
+        ),
+        "SnapshotTests": reddit_ios_module_snapshot_test_attrs(
+            include_generated_snapshots = True,
+        ),
+        "UnitTests": reddit_ios_module_unit_test_attrs(),
+    },
+)
+
+_bundle_identifier = "com.reddit.ShoppingIntelValidationHost"
+_profile = reddit_provisioning_profile(
+    name = "ShoppingIntelValidationHost_provisioning_profile",
+    profile_name = "iOS Team Provisioning Profile: {}".format(_bundle_identifier),
+)
+
+swift_library(
+    name = "ShoppingIntelValidationHostBinary",
+    srcs = ["ValidationHost/ShoppingIntelValidationHost.swift"],
+    module_name = "ShoppingIntelValidationHost",
+    tags = ["manual"],
+    visibility = ["//Modules:private_framework_visibility"],
+    deps = [":ShoppingIntel_Internal"],
+)
+
+ios_application(
+    name = "ShoppingIntelValidationHost",
+    bundle_id = _bundle_identifier,
+    exec_properties = CODE_SIGNED_EXEC_PROPERTIES,
+    families = ["iphone", "ipad"],
+    infoplists = ["ValidationHost/Info.plist"],
+    minimum_os_version = default_ios_version(),
+    provisioning_profile = _profile,
+    visibility = ["//visibility:public"],
+    deps = [":ShoppingIntelValidationHostBinary"],
+)

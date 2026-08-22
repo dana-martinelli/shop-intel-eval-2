@@ -1,0 +1,5 @@
+/* Accessibility label for the search results back button. */
+"back" = "Back";
+
+/* Title shown by the deterministic Shopping Intelligence validation host. */
+"validation_title" = "Shopping Intelligence";
