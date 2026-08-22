@@ -188,18 +188,26 @@ private struct ShoppingIntelProductCardsContent: View {
   @Environment(\.redditTheme) private var theme: RPLTheme
 
   var body: some View {
-    HStack(alignment: .top, spacing: 16) {
+    LazyVGrid(
+      columns: [
+        GridItem(.flexible(), spacing: 16),
+        GridItem(.flexible()),
+      ],
+      alignment: .leading,
+      spacing: 0
+    ) {
       ForEach(payload.products) { product in
         VStack(alignment: .leading, spacing: 8) {
-          Group {
+          ZStack {
+            Color(theme.color.rpl.neutral.background)
             if let image = ShoppingIntelResources.image(named: product.imageName) {
-              Image(uiImage: image).resizable()
-            } else {
-              Color(theme.color.rpl.neutral.backgroundContainer)
+              Image(uiImage: image)
+                .resizable()
+                .scaledToFit()
             }
           }
-          .scaledToFit()
           .aspectRatio(1, contentMode: .fit)
+          .frame(maxWidth: .infinity)
           .background(Color(theme.color.rpl.neutral.background))
           .clipShape(RoundedRectangle(cornerRadius: 21))
           .overlay(
