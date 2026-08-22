@@ -2,6 +2,8 @@
 //  Copyright © Reddit. All rights reserved.
 //
 
+import Assets_RedditAssets
+import Combine
 import CoreStack
 import CoreStack_SwiftUI
 import Palette_RedditPalette
@@ -9,6 +11,7 @@ import RedditSliceKit
 import RedditSliceKit_RPLHostableViews
 import RPLComponents
 import RPLComponents_SwiftUI
+import RPLExtras_Avatar
 import RPLIcons_Assets
 import SliceKit
 import SwiftUI
@@ -314,6 +317,19 @@ private struct ShoppingIntelPostContent: View {
       onOpen(payload.id)
     } label: {
       HStack(alignment: .top, spacing: 8) {
+        RPLAvatar.viewRepresentable(
+          content: .community(
+            contentProvider: .publisher(
+              identifier: payload.community,
+              publisher: Just(UIImage(resource: Assets.generic.defaultCommunity))
+                .eraseToAnyPublisher()
+            ),
+            size: .xsmall
+          )
+        )
+        .fixedSize()
+        .accessibilityHidden(true)
+
         VStack(alignment: .leading, spacing: 5) {
           Text("\(payload.community) · \(payload.age)")
             .font(Font(theme.font.rpl.semantic.caption1))

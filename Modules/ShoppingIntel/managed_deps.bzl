@@ -94,6 +94,7 @@ MANAGED_DEPS = {
         "//Modules/Palette:RedditPalette",
         "//Modules/RPLComponents",
         "//Modules/RPLComponents:SwiftUI",
+        "//Modules/RPLExtras:Avatar",
         "//Modules/RPLIcons:Assets",
         "//Modules/RedditApollo",
         "//Modules/RedditCore:ListingsInterface",

@@ -165,8 +165,8 @@
     {
       "path": "Evidence/production-validation.png",
       "kind": "visual_evidence",
-      "sha256": "6a13adb555a4e14b4af42af2e4bf60f1cd4f3fc866e98027a27c25acb7bf06bc",
-      "bytes": 768076
+      "sha256": "050536c81ec2cc794a2c9b0df69ce439e1f1f2e2bb5b830ac912857361738950",
+      "bytes": 787083
     },
     {
       "path": "Modules/ShoppingIntel/BUILD.bazel",
@@ -286,10 +286,10 @@
     },
     {
       "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/UI/ShoppingIntelHostedViews.swift",
-      "sha256": "0f4a392d20775b03c828617b7f826773df08c9dd7430b61fd5e51ea9e47a4078",
-      "bytes": 12957,
+      "sha256": "d4082c7c2c98a1dd08ccad8c4c37fe5f284f2f32959e56f7885df7bf4086a617",
+      "bytes": 13418,
       "kind": "swift_source",
-      "lines": 388
+      "lines": 404
     },
     {
       "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/UI/ShoppingIntelValidationSurface.swift",
@@ -329,14 +329,14 @@
     {
       "path": "Modules/ShoppingIntel/ShoppingIntel/Tests/AccessibilitySnapshotTests/Snapshots/ShoppingIntelAccessibilitySnapshotTests/testPhase1SearchResultsAccessibilityTree.phase-1-search-results-accessibilitySnapshot.png",
       "kind": "snapshot_baseline",
-      "sha256": "29d5ee40a0212432a6bc7ab829dfa5a6eaa27c1a170d19373838ffc66d162c1c",
-      "bytes": 2051871
+      "sha256": "4dbce3e158779de140f19c93ffbcb98e684192fdace6d90388ee3020324129fd",
+      "bytes": 2061696
     },
     {
       "path": "Modules/ShoppingIntel/ShoppingIntel/Tests/AccessibilitySnapshotTests/Snapshots/ShoppingIntelAccessibilitySnapshotTests/testRepeatedPostUnitsRemainDistinct.repeated-post-units-accessibilitySnapshot.png",
       "kind": "snapshot_baseline",
-      "sha256": "29d5ee40a0212432a6bc7ab829dfa5a6eaa27c1a170d19373838ffc66d162c1c",
-      "bytes": 2051871
+      "sha256": "4dbce3e158779de140f19c93ffbcb98e684192fdace6d90388ee3020324129fd",
+      "bytes": 2061696
     },
     {
       "path": "Modules/ShoppingIntel/ShoppingIntel/Tests/SnapshotTests/ShoppingIntelSnapshotTests.swift",
@@ -348,14 +348,14 @@
     {
       "path": "Modules/ShoppingIntel/ShoppingIntel/Tests/SnapshotTests/Snapshots/ShoppingIntelSnapshotTests/testPerUnitViewsAtAccessibilityTextSize.per-unit-watermelon.png",
       "kind": "snapshot_baseline",
-      "sha256": "97dc40ba43ca02d12ce593b036a3846fe4ba716b0abe8fc46d1e8cc3ed290ef6",
-      "bytes": 1963353
+      "sha256": "92e6991527f4e911193bb4bb7d70d9ca8cf02dd997a886a44b6e66037d088f8d",
+      "bytes": 1984297
     },
     {
       "path": "Modules/ShoppingIntel/ShoppingIntel/Tests/SnapshotTests/Snapshots/ShoppingIntelSnapshotTests/testPhase1SearchResultsSurface.phase-1-search-results.png",
       "kind": "snapshot_baseline",
-      "sha256": "bfbd91f6519ad4dd84fa4d6b1e4da7e974b72557c73c1bcf067e96f7b9330c44",
-      "bytes": 1781667
+      "sha256": "30a984aba393bc32578f822c04d1f71a655848bc72d21a40d2584472d512dda9",
+      "bytes": 1797394
     },
     {
       "path": "Modules/ShoppingIntel/ShoppingIntel/Tests/UnitTests/ShoppingIntelFeedTests.swift",
@@ -380,10 +380,10 @@
     },
     {
       "path": "Modules/ShoppingIntel/managed_deps.bzl",
-      "sha256": "3527d8ede5339207a1486fa5ac55bc8cc297e7bcd813624e4a26da0bca473a0f",
-      "bytes": 5537,
+      "sha256": "5a336924d958026de2f67093b0ccc1a3583e4c42755e314ba8d27b294b33a610",
+      "bytes": 5575,
       "kind": "build_definition",
-      "lines": 127
+      "lines": 128
     },
     {
       "path": "README.md",
