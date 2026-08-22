@@ -1,0 +1,396 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "feature_feed",
+  "feature": "ShoppingIntel",
+  "phase": "Phase 1 search-results shopping subsection",
+  "selfHashExcluded": true,
+  "selfHashExclusionReason": "A manifest cannot contain a stable hash of its own bytes; every other exported file is hash-bound below.",
+  "generationSkillCitations": [
+    {
+      "path": ".agents/skills/rpl-ios-usage/SKILL.md",
+      "sha256": "e1b41033d64c34ffde164812d5eecabd4c1ee32525db96002c40901f5b2acabb",
+      "loaded": true,
+      "purpose": "Required iOS RPL component selection, SwiftUI bridge, theme-token, accessibility, and escalation guidance."
+    }
+  ],
+  "architectureClaims": [
+    {
+      "claim": "The exported architecture is feature_feed and the Bazel module uses reddit_ios_behavior_module.",
+      "evidence": [
+        "Modules/ShoppingIntel/BUILD.bazel"
+      ]
+    },
+    {
+      "claim": "The sole production screen is constructed through FeedFactory.",
+      "evidence": [
+        "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/ShoppingIntelScreenFactoryImpl.swift"
+      ]
+    },
+    {
+      "claim": "ShoppingIntelAsyncStrategy exclusively loads shopping.json and emits ordered ModernFeedElements.",
+      "evidence": [
+        "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Feed/ShoppingIntelAsyncStrategy.swift",
+        "Modules/ShoppingIntel/ShoppingIntel/Resources/shopping.json"
+      ]
+    },
+    {
+      "claim": "Six screen-specific converter types compose only search header, tabs, summary, product cards, expand action, and repeatable post results.",
+      "evidence": [
+        "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Feed/ShoppingIntelFeedElementConverters.swift"
+      ]
+    },
+    {
+      "claim": "Every converter returns a data-bearing HostedListItemRepresentable whose SwiftUI content is backed by CoreStackFeature.",
+      "evidence": [
+        "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/UI/ShoppingIntelFeatures.swift",
+        "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/UI/ShoppingIntelHostedViews.swift"
+      ]
+    },
+    {
+      "claim": "Fixture-order tests prove omission, insertion, reordering, and repetition without converter changes.",
+      "evidence": [
+        "Modules/ShoppingIntel/ShoppingIntel/Tests/UnitTests/ShoppingIntelFeedTests.swift"
+      ]
+    },
+    {
+      "claim": "The export contains exactly the three approved Phase 1 .image assets and the supplied compiled preview evidence.",
+      "evidence": [
+        "Modules/ShoppingIntel/ShoppingIntel/Resources/shopping-asics.image",
+        "Modules/ShoppingIntel/ShoppingIntel/Resources/shopping-mizuno.image",
+        "Modules/ShoppingIntel/ShoppingIntel/Resources/shopping-post-media.image",
+        "Evidence/compiled-preview.png"
+      ]
+    }
+  ],
+  "prSliceManifest": {
+    "reviewOrder": [
+      1,
+      2,
+      3
+    ],
+    "slices": [
+      {
+        "order": 1,
+        "name": "Feed contract and ordered data",
+        "goal": "Establish the behavior module, fixture schema, async source, feed elements, strategy, and dynamic-order unit tests.",
+        "fileBudget": 10,
+        "changedLineBudget": 800,
+        "filePaths": [
+          "Modules/ShoppingIntel/BUILD.bazel",
+          "Modules/ShoppingIntel/managed_deps.bzl",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Public/ShoppingIntelScreenFactory.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Feed/ShoppingIntelPayloads.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Feed/ShoppingIntelFeedElements.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Feed/ShoppingIntelAsyncStrategy.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Feed/ShoppingIntelFeedStrategy.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Resources/shopping.json",
+          "Modules/ShoppingIntel/ShoppingIntel/Tests/UnitTests/ShoppingIntelFeedTests.swift"
+        ]
+      },
+      {
+        "order": 2,
+        "name": "CoreStack unit rendering",
+        "goal": "Add only the six supported converters and the deterministic per-unit SwiftUI/RPL visual layer with approved resources and image snapshots.",
+        "fileBudget": 12,
+        "changedLineBudget": 850,
+        "filePaths": [
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Feed/ShoppingIntelFeedElementConverters.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/UI/ShoppingIntelFeatures.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/UI/ShoppingIntelHostedViews.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Resources/ShoppingIntelResources.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Resources/en.lproj/ShoppingIntel.strings",
+          "Modules/ShoppingIntel/ShoppingIntel/Resources/shopping-asics.image",
+          "Modules/ShoppingIntel/ShoppingIntel/Resources/shopping-mizuno.image",
+          "Modules/ShoppingIntel/ShoppingIntel/Resources/shopping-post-media.image",
+          "Modules/ShoppingIntel/ShoppingIntel/Tests/SnapshotTests/ShoppingIntelSnapshotTests.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Tests/SnapshotTests/Snapshots/ShoppingIntelSnapshotTests/testPerUnitViewsAtAccessibilityTextSize.per-unit-watermelon.png",
+          "Modules/ShoppingIntel/ShoppingIntel/Tests/SnapshotTests/Snapshots/ShoppingIntelSnapshotTests/testPhase1SearchResultsSurface.phase-1-search-results.png"
+        ]
+      },
+      {
+        "order": 3,
+        "name": "FeedFactory integration and gates",
+        "goal": "Wire factory, navigation, DI, mock registration, validation host, accessibility coverage, evidence, and handoff documentation.",
+        "fileBudget": 18,
+        "changedLineBudget": 1100,
+        "filePaths": [
+          "README.md",
+          "Evidence/compiled-preview.png",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/ImplDI/ShoppingIntelImplDI.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Navigation/ShoppingIntelNavigator.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/ShoppingIntelScreenFactoryImpl.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/TestDoubles/ShoppingIntelScreenFactoryMock.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/UI/ShoppingIntelValidationSurface.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Public/DI/ShoppingIntelDI.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Sources/Public/MocksDI/ShoppingIntelMocksDI.swift",
+          "Modules/ShoppingIntel/ShoppingIntel/Tests/AccessibilitySnapshotTests/ShoppingIntelAccessibilitySnapshotTests.swift",
+          "Modules/ShoppingIntel/ValidationHost/Info.plist",
+          "Modules/ShoppingIntel/ValidationHost/ShoppingIntelValidationHost.swift",
+          "RPL_EXPORT_MANIFEST.json",
+          "Evidence/production-validation.png",
+          "Modules/ShoppingIntel/ShoppingIntel/Tests/AccessibilitySnapshotTests/Snapshots/ShoppingIntelAccessibilitySnapshotTests/testPhase1SearchResultsAccessibilityTree.phase-1-search-results-accessibilitySnapshot.png",
+          "Modules/ShoppingIntel/ShoppingIntel/Tests/AccessibilitySnapshotTests/Snapshots/ShoppingIntelAccessibilitySnapshotTests/testRepeatedPostUnitsRemainDistinct.repeated-post-units-accessibilitySnapshot.png",
+          ".gitignore"
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "executed": [
+      "swiftc -parse all exported Swift sources",
+      "python3 -m json.tool shopping.json and RPL_EXPORT_MANIFEST.json",
+      "plutil -lint ValidationHost/Info.plist",
+      "bazel build ShoppingIntel_Internal ShoppingIntel_ImplDI ShoppingIntelValidationHost",
+      "bazel test ShoppingIntel_UnitTests",
+      "bazel test ShoppingIntel_SnapshotTests",
+      "bazel test ShoppingIntel_AccessibilitySnapshotTests",
+      "xcrun simctl install and launch com.reddit.ShoppingIntelValidationHost on iOS 26.5"
+    ],
+    "notExecuted": [],
+    "reason": "Production gates ran in an isolated reddit-ios worktree pinned to be3d8aad96d7b50014ddce82c8265184a7b94082."
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "cf237c7aff44efbe6e502e645c3e06da03a69d7bdeb43392108ef3348143417e",
+      "bytes": 10,
+      "kind": "configuration"
+    },
+    {
+      "path": "Evidence/compiled-preview.png",
+      "sha256": "c637beadb6b1144c218d9681a74c352c1665f126caf3c14bf736b4bf7c9a6efb",
+      "bytes": 795637,
+      "kind": "visual_evidence"
+    },
+    {
+      "path": "Evidence/production-validation.png",
+      "kind": "visual_evidence",
+      "sha256": "050536c81ec2cc794a2c9b0df69ce439e1f1f2e2bb5b830ac912857361738950",
+      "bytes": 787083
+    },
+    {
+      "path": "Modules/ShoppingIntel/BUILD.bazel",
+      "sha256": "610f9ddb98269fc2c29859d9aea02429e4c54a43f2d88436a8a74bf42c334011",
+      "bytes": 2407,
+      "kind": "build_definition",
+      "lines": 61
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Resources/en.lproj/ShoppingIntel.strings",
+      "sha256": "d019961753a0975bd73a9afafd88ca6ba1b4eb20e41f1a4cbc1476621083acad",
+      "bytes": 204,
+      "kind": "localization",
+      "lines": 5
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Resources/shopping-asics.image",
+      "sha256": "9f6a48a462114f43922c00396baa439791ccc236fd525bdd9428e2f71faef100",
+      "bytes": 327923,
+      "kind": "image_asset"
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Resources/shopping-mizuno.image",
+      "sha256": "d79d5cec1570a9cd01f0c03af4f7425b0048e0ae3ad2c6f73c3792aa8aa1fda4",
+      "bytes": 613776,
+      "kind": "image_asset"
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Resources/shopping-post-media.image",
+      "sha256": "b72f658c316f3c3bc0e7f66a68501e7815065f5322760d91f7cdc35336c3ffaa",
+      "bytes": 454557,
+      "kind": "image_asset"
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Resources/shopping.json",
+      "sha256": "70aa2631563392199cbf466729b5e777fd92f51d250f2ea42d5af25487ca9f16",
+      "bytes": 2495,
+      "kind": "fixture",
+      "lines": 83
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Feed/ShoppingIntelAsyncStrategy.swift",
+      "sha256": "d124a4b29c9dfccbc9d7bf0211268d21d9ea6dcf488ceebaef40aab6b2fbd1d5",
+      "bytes": 2319,
+      "kind": "swift_source",
+      "lines": 74
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Feed/ShoppingIntelFeedElementConverters.swift",
+      "sha256": "b3bc5856480fec72f67d7483a41a470004ead87a5668a7f2ab58b54c6d32c6a2",
+      "bytes": 4051,
+      "kind": "swift_source",
+      "lines": 126
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Feed/ShoppingIntelFeedElements.swift",
+      "sha256": "ee984e55043e61c603b82a3f33ed0bce48ad602142f6ac443c8608b35f30c169",
+      "bytes": 1759,
+      "kind": "swift_source",
+      "lines": 57
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Feed/ShoppingIntelFeedStrategy.swift",
+      "sha256": "e6203b83d3886dfb2a0a74252dc332df8f6840f578c45fdfa27e10ad7609fce9",
+      "bytes": 3429,
+      "kind": "swift_source",
+      "lines": 91
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Feed/ShoppingIntelPayloads.swift",
+      "sha256": "669f6b4b7970837bb5503c5c507ff8b5f05774b77e7f9f8e9dd8d92a1c8db39c",
+      "bytes": 2609,
+      "kind": "swift_source",
+      "lines": 101
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/ImplDI/ShoppingIntelImplDI.swift",
+      "sha256": "0cc861214606ec59173a494dd6ce4f3a032b40621bc61d4ab81d1ae581591fca",
+      "bytes": 834,
+      "kind": "swift_source",
+      "lines": 32
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Navigation/ShoppingIntelNavigator.swift",
+      "sha256": "388ebd0b5b2eb4eecabc3c1083c31f7c0c274207daf296b1dddbaa0646252550",
+      "bytes": 711,
+      "kind": "swift_source",
+      "lines": 29
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/Resources/ShoppingIntelResources.swift",
+      "sha256": "9b6c8e4d81fc4875239047e0aba3a586eb1a2e0dd2a06f2fa8000777a33402ee",
+      "bytes": 1125,
+      "kind": "swift_source",
+      "lines": 39
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/ShoppingIntelScreenFactoryImpl.swift",
+      "sha256": "a377349cbc8d28bdbeebdcf31d529cc024212de72c285526bcceeb5b75ae28dc",
+      "bytes": 1911,
+      "kind": "swift_source",
+      "lines": 58
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/TestDoubles/ShoppingIntelScreenFactoryMock.swift",
+      "sha256": "d9dc5c66cf565609042c10a4509e24ea4a4a01c18c054ed4a006dc026e41b80a",
+      "bytes": 436,
+      "kind": "swift_source",
+      "lines": 17
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/UI/ShoppingIntelFeatures.swift",
+      "sha256": "dc412ae2d03204f9b6ee3ecda5d9d630882a0415e9639070a25e2ff1b17bfc01",
+      "bytes": 1573,
+      "kind": "swift_source",
+      "lines": 74
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/UI/ShoppingIntelHostedViews.swift",
+      "sha256": "d4082c7c2c98a1dd08ccad8c4c37fe5f284f2f32959e56f7885df7bf4086a617",
+      "bytes": 13418,
+      "kind": "swift_source",
+      "lines": 404
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Internal/UI/ShoppingIntelValidationSurface.swift",
+      "sha256": "d5529ec6eccca198ea94950d173ec649a6ceead347f50b86f2a647cf0cc91927",
+      "bytes": 1866,
+      "kind": "swift_source",
+      "lines": 65
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Public/DI/ShoppingIntelDI.swift",
+      "sha256": "5dc41c38a486f0f3dce13c0dde80ae57eb98c6f8b7a4c50e18882d5b2a91fb5c",
+      "bytes": 242,
+      "kind": "swift_source",
+      "lines": 11
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Public/MocksDI/ShoppingIntelMocksDI.swift",
+      "sha256": "f2b314ff4706ff29d14ddf1848cdfa7eca7c5e5ffb91029aa4dbb2e3d189f1c9",
+      "bytes": 365,
+      "kind": "swift_source",
+      "lines": 18
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Sources/Public/ShoppingIntelScreenFactory.swift",
+      "sha256": "6a2089296c88fb7c409f5d0cfadfd0057936a5878ee5d3c37e73b0e902cd97ff",
+      "bytes": 267,
+      "kind": "swift_source",
+      "lines": 11
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Tests/AccessibilitySnapshotTests/ShoppingIntelAccessibilitySnapshotTests.swift",
+      "sha256": "aff7edcacf8d8aef6f8ee00eb40ea1e736d6930e60f1bdc821d5d395c95c1bc5",
+      "bytes": 846,
+      "kind": "swift_source",
+      "lines": 27
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Tests/AccessibilitySnapshotTests/Snapshots/ShoppingIntelAccessibilitySnapshotTests/testPhase1SearchResultsAccessibilityTree.phase-1-search-results-accessibilitySnapshot.png",
+      "kind": "snapshot_baseline",
+      "sha256": "4dbce3e158779de140f19c93ffbcb98e684192fdace6d90388ee3020324129fd",
+      "bytes": 2061696
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Tests/AccessibilitySnapshotTests/Snapshots/ShoppingIntelAccessibilitySnapshotTests/testRepeatedPostUnitsRemainDistinct.repeated-post-units-accessibilitySnapshot.png",
+      "kind": "snapshot_baseline",
+      "sha256": "4dbce3e158779de140f19c93ffbcb98e684192fdace6d90388ee3020324129fd",
+      "bytes": 2061696
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Tests/SnapshotTests/ShoppingIntelSnapshotTests.swift",
+      "sha256": "b624bf592250b91cb68f363e1bcbd4ab6d7ac0939d7c829be3bd141755c784f0",
+      "bytes": 951,
+      "kind": "swift_source",
+      "lines": 36
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Tests/SnapshotTests/Snapshots/ShoppingIntelSnapshotTests/testPerUnitViewsAtAccessibilityTextSize.per-unit-watermelon.png",
+      "kind": "snapshot_baseline",
+      "sha256": "92e6991527f4e911193bb4bb7d70d9ca8cf02dd997a886a44b6e66037d088f8d",
+      "bytes": 1984297
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Tests/SnapshotTests/Snapshots/ShoppingIntelSnapshotTests/testPhase1SearchResultsSurface.phase-1-search-results.png",
+      "kind": "snapshot_baseline",
+      "sha256": "30a984aba393bc32578f822c04d1f71a655848bc72d21a40d2584472d512dda9",
+      "bytes": 1797394
+    },
+    {
+      "path": "Modules/ShoppingIntel/ShoppingIntel/Tests/UnitTests/ShoppingIntelFeedTests.swift",
+      "sha256": "adce96c1ad2d1c47f7c564c008cb006e5626372e3b7dcdbe7e94f5e54cbb8f38",
+      "bytes": 4082,
+      "kind": "swift_source",
+      "lines": 113
+    },
+    {
+      "path": "Modules/ShoppingIntel/ValidationHost/Info.plist",
+      "sha256": "37304ae393746bd32cb39dc1f7ba23b66f84da69fdf3b2faa9c3c0877ab67df0",
+      "bytes": 462,
+      "kind": "configuration",
+      "lines": 17
+    },
+    {
+      "path": "Modules/ShoppingIntel/ValidationHost/ShoppingIntelValidationHost.swift",
+      "sha256": "f2bd52dbcdde37b4a6b5f53b67544f385d882c58bfeff9b34c2c0aa1f606a361",
+      "bytes": 1195,
+      "kind": "swift_source",
+      "lines": 41
+    },
+    {
+      "path": "Modules/ShoppingIntel/managed_deps.bzl",
+      "sha256": "5a336924d958026de2f67093b0ccc1a3583e4c42755e314ba8d27b294b33a610",
+      "bytes": 5575,
+      "kind": "build_definition",
+      "lines": 128
+    },
+    {
+      "path": "README.md",
+      "sha256": "14a9b357f23af7ffc06ce860e502067f035ee1df06e5e71441ab0182c7cf3cc8",
+      "bytes": 2818,
+      "kind": "documentation",
+      "lines": 57
+    }
+  ]
+}

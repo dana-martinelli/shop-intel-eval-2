@@ -1,0 +1,83 @@
+{
+  "units": [
+    {
+      "type": "searchHeader",
+      "id": "search-header",
+      "query": "Asics Superblast vs Mizuno Neo Vist"
+    },
+    {
+      "type": "tabs",
+      "id": "result-tabs",
+      "selectedID": "all",
+      "tabs": [
+        { "id": "all", "title": "All" },
+        { "id": "posts", "title": "Posts" },
+        { "id": "communities", "title": "Communities" },
+        { "id": "comments", "title": "Comments" },
+        { "id": "media", "title": "Media" }
+      ]
+    },
+    {
+      "type": "summary",
+      "id": "shopping-summary",
+      "title": "What Redditors are saying",
+      "body": "Redditors think the Asics Superblast are the best all around model for racing, marathoning and training. But the Mizuno Neo Visa is a more affordable option that gets you 90% of the way there."
+    },
+    {
+      "type": "productCards",
+      "id": "product-cards",
+      "products": [
+        {
+          "id": "asics-superblast-2",
+          "imageName": "shopping-asics",
+          "title": "Asics Superblast 2",
+          "mentions": "1.1K mentions on r/running + 10 others"
+        },
+        {
+          "id": "mizuno-neo-vista",
+          "imageName": "shopping-mizuno",
+          "title": "Mizuno Neo Vista",
+          "mentions": "402 mentions on r/askrunningshoes + 7 others"
+        }
+      ]
+    },
+    {
+      "type": "expand",
+      "id": "summary-expand",
+      "collapsedTitle": "See more",
+      "expandedTitle": "See less",
+      "expandedHeading": "Asics Superblast 2",
+      "expandedBody": "Redditors say choose this if you want cushioned long runs, high-mileage comfort, and a more premium ride"
+    },
+    {
+      "type": "post",
+      "id": "best-running-shoes",
+      "community": "r/runninglifestyle",
+      "age": "4h",
+      "title": "Best running shoes from each brand!",
+      "votes": "42 votes",
+      "comments": "42 comments",
+      "imageName": "shopping-post-media"
+    },
+    {
+      "type": "post",
+      "id": "budget-running-shoes",
+      "community": "r/running",
+      "age": "4h",
+      "title": "Getting into running and need budget shoe recommendations",
+      "votes": "42 votes",
+      "comments": "42 comments",
+      "imageName": null
+    },
+    {
+      "type": "post",
+      "id": "favorite-daily-running-shoe",
+      "community": "r/XXrunning",
+      "age": "4h",
+      "title": "What’s your favorite daily running shoe right now?",
+      "votes": "42 votes",
+      "comments": "42 comments",
+      "imageName": null
+    }
+  ]
+}
